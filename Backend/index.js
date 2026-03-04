@@ -6,20 +6,26 @@ const bcrypt = require('bcrypt');
 const User = require('./modals/userModal.js');
 const session = require('express-session');
 
-mongoose.connect('mongodb+srv://Ankit:987654321@cluster0.xe0w2.mongodb.net/?retryWrites=true')
-    .then(() => {
-        console.log("Connected to Database");
-    })
-    .catch(err => {
-        console.log("Connection Failed");
-        console.log(err);
-    })
+mongoose
+  .connect("mongodb://127.0.0.1:27017/ankit_pharmacy_project")
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-app.use(session({ secret: 'user-data', resave: false, saveUninitialized: false }));
+app.use(
+  session({
+    secret: "ankit-pharmacy-secret-2026",
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 
 const requireLogin = (req, res, next) => {
