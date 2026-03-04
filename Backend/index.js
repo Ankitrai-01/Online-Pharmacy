@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, "../Landing Page")));
+app.use("/Forms", express.static(path.join(__dirname, "../Forms")));
 const mongoose = require('mongoose');
-const path = require('path');
 const bcrypt = require('bcrypt');
 const User = require('./modals/userModal.js');
 const session = require('express-session');
@@ -93,7 +96,7 @@ app.post('/login', async (req, res) => {
     if (!user) {
         return res.redirect('/login');
     }
-    const validPassword = bcrypt.compare(password, user.password);
+    const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
         return res.redirect('/login');
     }

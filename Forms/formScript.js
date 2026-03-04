@@ -168,7 +168,7 @@ form.addEventListener('submit', function (e) {
         setTimeout(function () {
             warning.style.display = 'none';
         }, 4000);
-        e.preventDefault();
+         console.log("Form submitted");
     }
 })
 
