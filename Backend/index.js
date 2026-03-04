@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require("path");
-
+app.use(express.static(path.join(__dirname, "..")));
 app.use(express.static(path.join(__dirname, "../Landing Page")));
 app.use("/Forms", express.static(path.join(__dirname, "../Forms")));
 const mongoose = require('mongoose');
